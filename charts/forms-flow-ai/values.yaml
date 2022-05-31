@@ -9,3 +9,7 @@ keycloak_url: idm-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
 keycloak_web_clientid: forms-flow-web
 web_api_url: webapi-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
 websocket_encrypt_key: FormsFlow.AI#{{ .Release.Namespace }}
+web_url: web-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
+keycloak_admin_web_clientid: forms-flow-admin
+admin_api_url: admin-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
+analytics_url: analytics-{{ .Release.Namespace }}.apps.devops.aot-technologies.com

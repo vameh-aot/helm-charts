@@ -101,13 +101,13 @@ spec:
           value: "{{ .Values.camunda_hikari_maximum_poolsize }}"
         - name: CAMUNDA_HIKARI_VALID_TIMEOUT
           value: "{{ .Values.hikari_valid_timeout }}"
-        - name: CAMUNDA_ANALYTICS_DATABASE_SERVICE_NAME
-          value: "{{ .Values.analytics_db_resource_name }}"
-        - name: CAMUNDA_ANALYTICS_DATABASE_NAME
-          valueFrom:
-            configMapKeyRef:
-              key: DATABASE_NAME
-              name: "{{ .Values.analytics_db_resource_name }}"
+        # - name: CAMUNDA_ANALYTICS_DATABASE_SERVICE_NAME
+          # value: "{{ .Values.analytics_db_resource_name }}"
+        # - name: CAMUNDA_ANALYTICS_DATABASE_NAME
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       key: DATABASE_NAME
+        #       name: "{{ .Values.analytics_db_resource_name }}"
         - name: CAMUNDA_BPM_HISTORY_LEVEL
           value: none
         - name: CAMUNDA_AUTHORIZATION_FLAG

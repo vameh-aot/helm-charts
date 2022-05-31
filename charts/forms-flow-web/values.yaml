@@ -3,8 +3,9 @@ camunda_url: https://bpm-{{ .Release.Namespace }}.apps.devops.aot-technologies.c
 cpu_limit: 300m
 cpu_request: 250m
 forms_url: https://formio-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
-image_tag: latest
-image_url: image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}-tools/{{ .Chart.Name }}.build
+image_tag: v4.0.6-alpha
+# image_url: image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}-tools/{{ .Chart.Name }}.build
+image_url: formsflow/forms-flow-web
 kc_mount_path: /usr/share/nginx/html/config/kc
 keycloak_realm: forms-flow-ai
 keycloak_url: https://idm-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
@@ -21,3 +22,5 @@ redash_secret_key: c2FY1BNNNGQP1sjaKGNIu8wXai1irSKqRIv3h1nb
 redash_url: https://bpm-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
 web_api_url: https://webapi-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
 web_url: web-{{ .Release.Namespace }}.apps.devops.aot-technologies.com
+enable_client_auth: false
+multi_tenancy_enabled: false

@@ -31,36 +31,6 @@ spec:
     spec:
       containers:
       - env:
-        - name: MONGODB_URI
-          valueFrom:
-            secretKeyRef:
-              key: MONGO_URL
-              name: "{{ .Values.mongodb_secret_name }}"
-        - name: BPM_API_BASE
-          valueFrom:
-            configMapKeyRef:
-              key: CAMUNDA_API_URI
-              name: "{{ .Values.formsflow_config_name }}"
-        - name: BPM_CLIENT_ID
-          valueFrom:
-            secretKeyRef:
-              key: BPM_CLIENT_ID
-              name: "{{ .Values.formsflow_secret }}"
-        - name: BPM_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              key: BPM_CLIENT_SECRET
-              name: "{{ .Values.formsflow_secret }}"
-        - name: BPM_TOKEN_API
-          valueFrom:
-            configMapKeyRef:
-              key: KEYCLOAK_TOKEN_URL
-              name: "{{ .Values.formsflow_config_name }}"
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              key: DATABASE_URL
-              name: "{{ .Values.webapi_db_resource_name }}"
         - name: JWT_OIDC_ALGORITHMS
           valueFrom:
             configMapKeyRef:
@@ -96,43 +66,12 @@ spec:
             configMapKeyRef:
               key: KEYCLOAK_JWT_OIDC_CONFIG
               name: "{{ .Values.formsflow_config_name }}"
-        - name: KEYCLOAK_URL
+        - name: MODEL_ID
           valueFrom:
             configMapKeyRef:
-              key: KEYCLOAK_URL
+              key: MODEL_ID
               name: "{{ .Values.formsflow_config_name }}"
-        - name: WEB_API_BASE_URL
-          valueFrom:
-            configMapKeyRef:
-              key: WEB_API_BASE_URL
-              name: "{{ .Values.formsflow_config_name }}"
-        - name: KEYCLOAK_URL_REALM
-          valueFrom:
-            secretKeyRef:
-              key: KEYCLOAK_REALM
-              name: "{{ .Values.formsflow_secret }}"
-        - name: INSIGHT_API_URL
-          valueFrom:
-            configMapKeyRef:
-              key: INSIGHT_API_URL
-              name: "{{ .Values.formsflow_config_name }}"
-        - name: INSIGHT_API_KEY
-          valueFrom:
-            secretKeyRef:
-              key: REDASH_SECRET_KEY
-              name: "{{ .Values.formsflow_analytics_secret }}"
-        - name: KEYCLOAK_ENABLE_CLIENT_AUTH
-          valueFrom:
-            configMapKeyRef:
-              key: KEYCLOAK_ENABLE_CLIENT_AUTH
-              name: "{{ .Values.formsflow_config_name }}"
-        - name: MULTI_TENANCY_ENABLED
-          valueFrom:
-            configMapKeyRef:
-              key: MULTI_TENANCY_ENABLED
-              name: "{{ .Values.formsflow_config_name }}"
-        - name: FORMSFLOW_API_CORS_ORIGINS
-          value: '*'
+
         image: "{{ tpl .Values.image_url . }}:{{ .Values.tag_name }}"
         name: "{{ .Chart.Name }}"
         ports:

@@ -1,0 +1,6 @@
+---
+apiVersion: v2
+description: Deployment template for a postgresql server with persistent storage.
+name: forms-flow-admin-postgresql
+tags: forms-flow-admin-postgresql-dev
+version: v0.2.0

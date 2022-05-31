@@ -1,0 +1,8 @@
+---
+apiVersion: v2
+dependencies:
+  - name: forms-flow-admin-postgresql
+    version: 0.2.0
+name: forms-flow-admin
+tags: forms-flow-admin
+version: v0.2.0
