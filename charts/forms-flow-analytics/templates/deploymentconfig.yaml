@@ -87,6 +87,7 @@ spec:
           value: "--timeout 300"
         image: "{{ tpl .Values.image_url . }}:{{ .Values.image_tag }}"
         name: "{{ .Chart.Name }}-server"
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
           protocol: TCP
@@ -98,17 +99,6 @@ spec:
             cpu: "{{ .Values.cpu_request }}"
             memory: "{{ .Values.memory_request }}"
       restartPolicy: Always
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - "{{ .Chart.Name }}-server"
-      from:
-        kind: ImageStreamTag
-        name: "{{ .Values.imagestream_name }}:{{ .Values.image_tag }}"
-        namespace: "{{ .Release.Namespace }}-tools"
-    type: ImageChange
 ---
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
@@ -182,6 +172,7 @@ spec:
           value: "2"
         image: "{{ tpl .Values.image_url . }}:{{ .Values.image_tag }}"
         name: "{{ .Chart.Name }}-adhoc-worker"
+        imagePullPolicy: Always
         resources:
           limits:
             cpu: "{{ .Values.cpu_limit }}"
@@ -191,17 +182,6 @@ spec:
             memory: "{{ .Values.memory_request }}"
       restartPolicy: Always
   test: false
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - "{{ .Chart.Name }}-adhoc-worker"
-      from:
-        kind: ImageStreamTag
-        name: "{{ .Values.imagestream_name }}:{{ .Values.image_tag }}"
-        namespace: "{{ .Release.Namespace }}-tools"
-    type: ImageChange
 ---
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
@@ -275,6 +255,7 @@ spec:
           value: "1"
         image: "{{ tpl .Values.image_url . }}:{{ .Values.image_tag }}"
         name: "{{ .Chart.Name }}-scheduled-worker"
+        imagePullPolicy: Always
         resources:
           limits:
             cpu: "{{ .Values.cpu_limit }}"
@@ -284,17 +265,6 @@ spec:
             memory: "{{ .Values.memory_request }}"
       restartPolicy: Always
   test: false
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - "{{ .Chart.Name }}-scheduled-worker"
-      from:
-        kind: ImageStreamTag
-        name: "{{ .Values.imagestream_name }}:{{ .Values.image_tag }}"
-        namespace: "{{ .Release.Namespace }}-tools"
-    type: ImageChange
 ---
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
@@ -364,6 +334,7 @@ spec:
               name: "{{ .Chart.Name }}"
         image: "{{ tpl .Values.image_url . }}:{{ .Values.image_tag }}"
         name: "{{ .Chart.Name }}-scheduler"
+        imagePullPolicy: Always
         resources:
           limits:
             cpu: "{{ .Values.cpu_limit }}"
@@ -373,17 +344,6 @@ spec:
             memory: "{{ .Values.memory_request }}"
       restartPolicy: Always
   test: false
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - "{{ .Chart.Name }}-scheduler"
-      from:
-        kind: ImageStreamTag
-        name: "{{ .Values.imagestream_name }}:{{ .Values.image_tag }}"
-        namespace: "{{ .Release.Namespace }}-tools"
-    type: ImageChange
 ---
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
@@ -466,14 +426,4 @@ spec:
             memory: "{{ .Values.memory_request }}"
       restartPolicy: Always
   test: false
-  triggers:
-  - type: ConfigChange
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - "{{ .Chart.Name }}-worker"
-      from:
-        kind: ImageStreamTag
-        name: "{{ .Values.imagestream_name }}:{{ .Values.image_tag }}"
-        namespace: "{{ .Release.Namespace }}-tools"
-    type: ImageChange
+  
